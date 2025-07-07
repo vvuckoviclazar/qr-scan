@@ -8,3 +8,82 @@
 html {
   font-size: 6.25%;
 }
+
+body {
+  background-color: rgb(0, 19, 46);
+  color: white;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 120rem;
+}
+
+header {
+  width: 1000rem;
+  border: 2rem solid rgb(85, 232, 255);
+  border-radius: 7rem;
+  margin-bottom: 15rem;
+  display: flex;
+  justify-content: end;
+  padding: 10rem;
+}
+
+.container {
+  width: 1000rem;
+  border: 2rem solid rgb(85, 232, 255);
+  border-radius: 7rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 10rem;
+}
+
+.generate-btn-1,
+.generate-btn-2,
+.download-btn {
+  color: white;
+  background-color: rgb(0, 68, 0);
+  border: 3rem solid rgb(0, 255, 0);
+  border-radius: 10rem;
+  font-size: 28rem;
+  font-weight: bold;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  padding: 5rem 18rem 5rem 18rem;
+}
+
+.generate-btn-1:hover,
+.generate-btn-2:hover,
+.download-btn:hover {
+  background-color: rgb(0, 152, 0);
+  cursor: pointer;
+}
+
+.qr-img {
+  width: 200rem;
+  margin-bottom: 15rem;
+}
+
+p {
+  font-size: 20rem;
+  margin-bottom: 15rem;
+}
+
+.qr-div {
+  background-color: red;
+  color: rgb(0, 0, 68);
+  padding: 55rem 30rem 25rem 30rem;
+  border-radius: 20rem;
+}
+
+.download-div {
+  padding-left: 162rem;
+}
+
+span {
+  font-size: 45rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
