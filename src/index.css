@@ -39,6 +39,15 @@ header {
   padding: 10rem;
 }
 
+.load-mode {
+  width: 1000rem;
+  border: 2rem solid rgb(85, 232, 255);
+  border-radius: 7rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 10rem;
+}
+
 .generate-btn-1,
 .generate-btn-2,
 .download-btn {
@@ -86,4 +95,27 @@ span {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.loading-spinner {
+  width: 150rem;
+  height: 150rem;
+  border: 15rem solid #cfcfcf;
+  border-top: 15rem solid rgb(0, 208, 255);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 100rem auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.qr-div.green {
+  background-color: green;
 }
