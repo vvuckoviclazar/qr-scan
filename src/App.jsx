@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Btn from "./btn.jsx";
 
@@ -6,6 +6,10 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isCounting, setIsCounting] = useState(false);
   const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    startProcess();
+  }, []);
 
   const startProcess = () => {
     if (isLoading || isCounting) return;
@@ -35,7 +39,9 @@ function App() {
       <header>
         <Btn
           text="Generate"
-          className="generate-btn-1"
+          className={`generate-btn-1 ${
+            isLoading || isCounting ? "disabled-btn" : ""
+          }`}
           onClick={startProcess}
           disabled={isLoading || isCounting}
         />
@@ -48,10 +54,12 @@ function App() {
           <>
             <div className={`qr-div ${isCounting ? "green" : ""}`}>
               <img src="qr-code.png" className="qr-img" />
-              <p>{isCounting ? "" : "Time is up!"}</p>
+              <p className={`${isCounting ? "green-p" : ""}`}>Time is up!</p>
               <Btn
                 text="Generate"
-                className="generate-btn-2"
+                className={`generate-btn-2 ${
+                  isLoading || isCounting ? "disabled-btn" : ""
+                }`}
                 onClick={startProcess}
                 disabled={isLoading || isCounting}
               />
