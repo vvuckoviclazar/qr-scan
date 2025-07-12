@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./App.css";
 import Btn from "./btn.jsx";
 
@@ -6,45 +6,58 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isCounting, setIsCounting] = useState(false);
   const [count, setCount] = useState(0);
+  const intervalRef = useRef(null);
 
   useEffect(() => {
-    startProcess();
+    startLoading().then(() => startProcess());
+    return () => clearInterval(intervalRef.current);
   }, []);
 
-  const startProcess = () => {
-    if (isLoading || isCounting) return;
-
+  function startLoading() {
     setIsLoading(true);
-
-    setTimeout(() => {
-      setIsLoading(false);
-      setIsCounting(true);
-      setCount(5);
-
-      const interval = setInterval(() => {
-        setCount((prev) => {
-          if (prev <= 1) {
-            clearInterval(interval);
-            setIsCounting(false);
-            return 0;
-          }
-          return prev - 1;
-        });
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        setIsLoading(false);
+        resolve();
       }, 1000);
-    }, 2500);
+    });
+  }
+
+  const startProcess = () => {
+    setIsCounting(true);
+    setCount(5);
+
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+
+    intervalRef.current = setInterval(() => {
+      setCount((prev) => {
+        console.log(prev);
+
+        if (prev <= 1) {
+          clearInterval(intervalRef.current);
+          setIsCounting(false);
+          return 0;
+        }
+
+        return prev - 1;
+      });
+    }, 1000);
   };
 
   return (
     <>
       <header>
+        <pre>{isLoading}</pre>
+        <pre>{isCounting}</pre>
         <Btn
-          text="Generate"
-          className={`generate-btn-1 ${
-            isLoading || isCounting ? "disabled-btn" : ""
-          }`}
-          onClick={startProcess}
-          disabled={isLoading || isCounting}
-        />
+          onClick={() => startLoading().then(() => startProcess())}
+          isDisabled={isLoading || isCounting}
+          variation="green"
+        >
+          Generate
+        </Btn>
       </header>
 
       <div className={`container ${isLoading ? "load-mode" : ""}`}>
@@ -56,23 +69,24 @@ function App() {
               <img src="qr-code.png" className="qr-img" />
               <p className={`${isCounting ? "green-p" : ""}`}>Time is up!</p>
               <Btn
-                text="Generate"
-                className={`generate-btn-2 ${
-                  isLoading || isCounting ? "disabled-btn" : ""
-                }`}
-                onClick={startProcess}
-                disabled={isLoading || isCounting}
-              />
+                onClick={() => startLoading().then(() => startProcess())}
+                isDisabled={isLoading || isCounting}
+                variation="green"
+              >
+                Generate
+              </Btn>
             </div>
 
             <span className="stopwatch">{count} s</span>
 
             <div className="download-div">
               <Btn
-                text="Download"
-                className="download-btn"
                 onClick={() => console.log("Download clicked")}
-              />
+                variation="pink"
+                isDisabled={isLoading || isCounting}
+              >
+                Download
+              </Btn>
             </div>
           </>
         )}
@@ -82,3 +96,10 @@ function App() {
 }
 
 export default App;
+
+// napravi da download-btn roze
+// pogledaj zasto buttons nisu disable dok traje
+
+// moras pocistiti interval
+// moras da ga sacuvas u ref (pogledaj useRef)
+// how to clear interval with useRef

@@ -45,12 +45,10 @@ header {
   border-radius: 7rem;
   display: grid;
   grid-template-columns: 1fr;
-  padding: 27rem;
+  padding: 31rem;
 }
 
-.generate-btn-1,
-.generate-btn-2,
-.download-btn {
+.green {
   color: white;
   background-color: rgb(0, 68, 0);
   border: 3rem solid rgb(0, 255, 0);
@@ -62,11 +60,26 @@ header {
   padding: 5rem 18rem 5rem 18rem;
 }
 
-.generate-btn-1:hover,
-.generate-btn-2:hover,
-.download-btn:hover {
+.green:hover {
   background-color: rgb(0, 152, 0);
   cursor: pointer;
+}
+
+.pink {
+  color: white;
+  background-color: rgba(255, 141, 202, 0.772);
+  border: 3rem solid rgb(255, 90, 117);
+  border-radius: 10rem;
+  font-size: 28rem;
+  font-weight: bold;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  padding: 5rem 18rem 5rem 18rem;
+}
+
+.pink:hover {
+  cursor: pointer;
+  background-color: rgb(255, 163, 204);
 }
 
 .qr-img {
